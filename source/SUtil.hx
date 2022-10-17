@@ -160,7 +160,7 @@ class SUtil
 			}
 			#if android
 			catch (e:Dynamic)
-			
+			Hardware.toast("Error!\nClouldn't save the crash dump because:\n" + e, ToastType.LENGTH_LONG);
 			#end
 			#end
 
@@ -181,14 +181,14 @@ class SUtil
 
 			File.saveContent(SUtil.getPath() + 'saves/' + fileName + fileExtension, fileData);
 			#if android
-			
+			Hardware.toast("File Saved Successfully!", ToastType.LENGTH_LONG);
 			#end
 		}
 		#if android
 		catch (e:Dynamic)
+		Hardware.toast("Error!\nClouldn't save the file because:\n" + e, ToastType.LENGTH_LONG);
 		#end
-		
-	
+	}
 
 	public static function copyContent(copyPath:String, savePath:String)
 	{
@@ -199,7 +199,7 @@ class SUtil
 		}
 		#if android
 		catch (e:Dynamic)
-		
+		Hardware.toast("Error!\nClouldn't copy the file because:\n" + e, ToastType.LENGTH_LONG);
 		#end
 	}
 	#end
