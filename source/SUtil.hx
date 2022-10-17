@@ -1,7 +1,7 @@
 package;
 
 #if android
-import android.androidtools;
+import android.Androidtools;
 import android.Permissions;
 #end
 import lime.app.Application;
@@ -15,7 +15,7 @@ class SUtil
 {
     #if android
     private static var aDir:String = null;
-    private static var sPath:String = androidtools.getExternalStorageDirectory();  
+    private static var sPath:String = Androidtools.getExternalStorageDirectory();  
     private static var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();  
     #end
 
