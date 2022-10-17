@@ -186,9 +186,9 @@ class SUtil
 		}
 		#if android
 		catch (e:Dynamic)
-		
 		#end
-	}
+		
+	
 
 	public static function copyContent(copyPath:String, savePath:String)
 	{
