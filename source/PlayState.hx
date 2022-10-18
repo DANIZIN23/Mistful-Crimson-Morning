@@ -60,7 +60,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-#if MODS_ALLOWED
+#if sys
 import sys.FileSystem;
 #end
 
@@ -815,7 +815,7 @@ class PlayState extends MusicBeatState
 		#end
 
 		for (folder in foldersToCheck)
-		{ 
+		{
 			if(FileSystem.exists(folder))
 			{
 				for (file in FileSystem.readDirectory(folder))
@@ -1125,6 +1125,12 @@ class PlayState extends MusicBeatState
         scoreTxt.borderSize = 1.25;
         scoreTxt.visible = !ClientPrefs.hideHud;
         add(scoreTxt);
+	
+	var creditTxt = new FlxText(876, 648, 348);
+     creditTxt.text = "PORTED BY\nDanizin";
+    creditTxt.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.YELLOW);
+    creditTxt.scrollFactor.set();
+    add(creditTxt);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1136,9 +1142,13 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
+	if(ClientPrefs.downScroll) {
+			creditTxt.y = 148;
+		}
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
+	creditTxt.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
@@ -1150,12 +1160,11 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
-		#if android
-	addAndroidControls();
+	#if android
+		addAndroidControls();
 	androidControls.visible = true;
-	#end		
-	
-	// if (SONG.song == 'South')
+		#end
+		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
 
@@ -1304,7 +1313,7 @@ class PlayState extends MusicBeatState
 		
 		super.create();
 
-		#if windows
+		#if windows 
 			if(ClientPrefs.enableShaders) {
 				switch(curSong.toLowerCase()) {
 					case "humiliation":
@@ -1318,7 +1327,7 @@ class PlayState extends MusicBeatState
 						addShaderToCamera('camHUD', new VCRDistortionEffect(0, true, true, true));
 				}
 			}
-		#end
+		 #end
 
 		Paths.clearUnusedMemory();
 
@@ -1509,7 +1518,7 @@ public function clearShaderFromCamera(cam:String){
 			luaFile = Paths.modFolders(luaFile);
 			doPush = true;
 		} else {
-			luaFile = SUtil.getPath() +  Paths.getPreloadPath(luaFile);
+			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
 			if(FileSystem.exists(luaFile)) {
 				doPush = true;
 			}
