@@ -60,7 +60,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-#if sys
+#if MODS_ALLOWED
 import sys.FileSystem;
 #end
 
