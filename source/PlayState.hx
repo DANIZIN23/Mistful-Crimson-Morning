@@ -1511,7 +1511,7 @@ public function clearShaderFromCamera(cam:String){
 
 	function startCharacterLua(name:String)
 	{
-		#if LUA_ALLOWED
+		#if MODS_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
 		if(FileSystem.exists(Paths.modFolders(luaFile))) {
@@ -2350,7 +2350,7 @@ public function clearShaderFromCamera(cam:String){
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json(songName + '/events');
-		#if sys
+		#if MODS_ALLOWED
 		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(SUtil.getPath() + file)) {
 		#else
 		if (OpenFlAssets.exists(file)) {
